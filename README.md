@@ -1,2 +1,3 @@
 # Matlab-LPC
 Izračun koeficijenata linearne predikcije (LPC) za kratkotrajne segmente .waw zvučne datoteke. Pokušati izraditi model u MATLAB-u koji će na temelju koeficijenata linearne predikcije klasificirati kratkotrajne segmente signala u razrede zvučni/bezvučni glasovi.
+Projekt je još uvijek u fazi izrade i priložio sam vrem.waw datoteku(zvučna snimka) i vrem.lab datoteku(transkripcija) na kojoj sam testirao kôd. Koristio sam program wavesurfer za dodatni prikaz audio datoteke i njezine transkripcije, također koristim se voicebox matlab knjižnicom za učitavanje .waw datoteke i izračun lpc koeficijenata.
