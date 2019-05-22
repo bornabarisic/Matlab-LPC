@@ -1,13 +1,15 @@
 close all;
 clear all;
 clc;
+labFile = 'vrem.lab';
+wawFile = 'vrem.wav';
 
 % -------------------------------------------------------------------------
 % Uèitavanje .waw audio datoteke te množenje audio signala s hammingovim 
 % prozorom od L = 320 frameova kako bi založili signal na manje djelove
 % Dovivamo listu vektora sa svim prozorima (lista_vektora{i})
 
-[Y,FS,WMODE,FIDX] = v_readwav('vrem.wav','s',-1,-1);
+[Y,FS,WMODE,FIDX] = v_readwav(wawFile,'s',-1,-1);
 
 % Generiranje funkcije prozora
 L = 320;
@@ -67,8 +69,8 @@ lista_vektora;
 % -------------------------------------------------------------------------
 % Uèitavanje .lab datoteke i spremanje podataka o glasovima i njihovim
 % trajanjima
-fileName = 'vrem.lab';
-fileID = fopen(fileName,'r');
+
+fileID = fopen(labFile,'r');
 podaci = textscan(fileID, '%f %f %s');
 fclose(fileID);
 
@@ -105,13 +107,13 @@ zbroj = trajanje_glas_frame(1);
 razlika = L - zbroj;
 glasovi_frame(k) = glasovi(z);
 
-while (broj_prozora < 51);
+while (z < length(glasovi)+1);
     
     while (razlika > 0);        
         k = k + 1;
         z = z + 1;
         
-        if (z > 137);
+        if (z > length(glasovi));
             break
         end
         
@@ -131,7 +133,7 @@ while (broj_prozora < 51);
         z = z - 1;
         k = 0;
     end
-    
+
     lista_glasovi_frame{it} = glasovi_frame;
     glasovi_frame = {};
     
@@ -176,6 +178,6 @@ end
 lista_coeficijenata;
 % ------------------------------------------------------------------------- 
 
-lista_coeficijenata{1}
-rez = mean(lista_coeficijenata{1})
+% lista_coeficijenata{1}
+% rez = mean(lista_coeficijenata{1})
 
